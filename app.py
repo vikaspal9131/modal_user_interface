@@ -15,7 +15,7 @@ st.sidebar.subheader("History")
 # Function to upload file
 def upload_file():
     uploaded_file = st.file_uploader("Upload your file" )
-    if uploaded_file is not None:
+    if uploaded_file is not None
         st.write('File uploaded successfully!')
         st.image(uploaded_file, caption='Uploaded Image.')
         return uploaded_file
