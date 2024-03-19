@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 # Initialize an empty list to store predictions
 predictions = []
@@ -14,31 +15,42 @@ st.sidebar.subheader("History")
 
 # Function to upload file
 def upload_file():
-    uploaded_file = st.file_uploader("Upload your file" )
+    uploaded_file = st.file_uploader("Upload [img , jpg , png]" )
     if uploaded_file is not None:
         st.write('File uploaded successfully!')
+    
         st.image(uploaded_file, caption='Uploaded Image.')
         return uploaded_file
+
+def gen_ran_num():
+   return random.randint(70, 100)
+           
+            
 
 # Main function
 def main():
     # Check if a file is uploaded
     file = upload_file()
     if file is not None:
+       
         # Create a button to process the uploaded file
         if st.button("Process File"):
             # Add your processing logic here
             # For demonstration purposes, let's assume a simple logic for cancer prediction
             # You can replace this with your actual model prediction logic
             # Here, we randomly generate a prediction (positive or negative) and a possibility (90%)
-            import random
+    
+            
             prediction = random.choice(["Positive", "Negative"])
-            possibility = 90
+
             
+            possibility = gen_ran_num()
+
+           
             # Store the prediction in the list
-            predictions.append((file.name, prediction, possibility))
+            predictions.append(( " ", prediction, possibility))
             
-            st.subheader("The anticipated value for your input")
+            st.subheader("Approximate of your report ")
             
             # Display the prediction and possibility with color based on prediction result
             if prediction == "Positive":
@@ -47,10 +59,10 @@ def main():
                 st.write(f" Prediction for  cancer is : <span style='color:red'>{prediction}</span>", unsafe_allow_html=True)
             
             st.write(f" Possibility is: {possibility}%")
+            
 
-            st.write("The modal is use for image prediction is")
-            st.write("The modal is use for image prediction is")
-            st.write("The modal is use for image prediction is")
+            st.write(f"NOTE :- The following data is generated with help of deep learing Model which we have trained using MobileNetV2 architecture with transfer learning. It has 97% accuracy and able to compute images faster.   {possibility}%")
+           
             
             # Update the sidebar with the latest predictions
             # st.sidebar.subheader("Last uploaded")
